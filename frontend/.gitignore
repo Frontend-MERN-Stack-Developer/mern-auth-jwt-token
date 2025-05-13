@@ -1,0 +1,82 @@
+# ========================
+# Frontend (React/Vite)
+# ========================
+
+# Dependency directories
+node_modules/
+client/node_modules/    # if you have a separate client folder
+
+# Production build outputs
+/build                 # Create React App build
+/dist                  # Vite or other builds
+/public/build          # (if using Laravel Mix or similar)
+client/build/          # if CRA client is in a subfolder
+
+# Testing
+/coverage/            # coverage reports
+
+# Environment files (ignore sensitive credentials)
+/.env
+/config.env
+.env.local
+.env.*.local          # CRA default (dev/test/prod)
+/.env.development.local
+.env.test.local
+.env.production.local
+
+# Misc
+.DS_Store             # macOS filesystem file
+Thumbs.db             # Windows image cache
+.vscode/              # VSCode settings folder (optional)
+.idea/                # JetBrains IDE folder (optional)
+.cache/               # general cache (e.g. Vite cache)
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ========================
+# Backend (Node/Express)
+# ========================
+
+# Dependency directories
+node_modules/
+server/node_modules/   # if you have a separate server folder
+
+# Logs and runtime data
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+pids/
+*.pid
+*.pid.lock
+*.seed
+
+# Testing & Coverage
+/coverage/
+.nyc_output/
+
+# Build output (if using Babel/TypeScript)
+/dist/
+build/
+out-tsc/
+
+# Environment and config (secrets)
+.env
+.env.*               # any other env variants
+*.pem                # SSL certs or keys
+config.js
+
+# Caches and tooling
+.eslintcache
+.yarn-integrity      # Yarn integrity file
+.cache/              
+.parcel-cache/
+
+# Operating system/IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

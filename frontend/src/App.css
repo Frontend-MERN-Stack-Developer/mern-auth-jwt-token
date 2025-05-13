@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+.left-bg{
+  position: fixed;
+  width: 50% !important;
+  left: 0;
+}
+.logoName {
+  font-family: "Lobster", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.app-btn{
+  cursor: pointer;
+  background-image: linear-gradient(to left, #f83600 0%, #f9d423 100%);
+}
+.app-btn:hover{
+  background-image: linear-gradient(to right, #f83600 0%, #f9d423 100%);
+}
+.main-form{
+  position: relative;
+  z-index: 999;
+}
+.main-form h2{
+  color: #f83600;
+}
+.auth-screen h1{
+  color: #f83600;
+}
+.input-holder:hover{
+  border-color: #f83600;
+}
