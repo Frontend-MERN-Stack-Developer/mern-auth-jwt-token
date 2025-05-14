@@ -21,33 +21,9 @@ const Login = () => {
     console.log(userData);
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   try {
-  //     const response = await axios.post(
-  //       "http://localhost:2100/api/login",
-  //       user
-  //     );
-  //     setLoading(true);
-  //     toast("Login Successful");
-  //     console.log("User registered", response.data);
-  //     setUser(response.data);
-  //     localStorage.setItem("token", JSON.stringify(response.data.token));
-  //     navigate("/dashboard");
-  //   } catch (error) {
-  //     toast("Invalid credential");
-  //     setLoading(false);
-  //     console.error(
-  //       "Error while submitting form:",
-  //       error.response?.data || error.message
-  //     );
-  //   }
-  // };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); // ✅ Start loading before the API call
+    setLoading(true);
 
     try {
       const response = await axios.post(
