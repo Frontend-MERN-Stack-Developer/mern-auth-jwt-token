@@ -4,6 +4,7 @@ import { TbLockPassword } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
 import { MdOutlineAccountBox } from "react-icons/md";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ const SignUp = () => {
     password: "",
   };
   const [user, setUser] = useState(userData);
+  const [loading, setLoading] = useState(false);
 
   const inputHandler = (e) => {
     const { name, value } = e.target;
@@ -41,14 +43,15 @@ const SignUp = () => {
         "http://localhost:2100/api/register",
         user
       );
+      toast("User register successfully");
       console.log("User registered:", response.data);
       setUser(response.data);
-      // navigate("/register");
+      navigate("/register");
     } catch (error) {
-      console.error(
-        "Error while submitting form:",
-        error.response?.data || error.message
-      );
+      toast("User register failed");
+      console.error("Error while submitting form:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -129,8 +132,12 @@ const SignUp = () => {
             className="w-full p-2 outline-none"
           />
         </div>
-        <button type="submit" className="w-full text-white p-2 rounded app-btn">
-          Register
+        <button
+          disabled={loading}
+          type="submit"
+          className="disabled:opacity-70 w-full text-white p-2 rounded app-btn"
+        >
+          {loading ? "Register..." : "Register"}
         </button>
       </form>
     </div>

@@ -3,6 +3,7 @@ import { FiMail, FiLock } from "react-icons/fi";
 import { TbLockPassword } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -10,9 +11,9 @@ const Login = () => {
     email: "",
     password: "",
   };
-  // const token = JSON.parse(localStorage.setItem("token"));
 
   const [user, setUser] = useState(userData);
+  const [loading, setLoading] = useState(false);
   const inputHandler = (e) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
@@ -20,24 +21,49 @@ const Login = () => {
     console.log(userData);
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     const response = await axios.post(
+  //       "http://localhost:2100/api/login",
+  //       user
+  //     );
+  //     setLoading(true);
+  //     toast("Login Successful");
+  //     console.log("User registered", response.data);
+  //     setUser(response.data);
+  //     localStorage.setItem("token", JSON.stringify(response.data.token));
+  //     navigate("/dashboard");
+  //   } catch (error) {
+  //     toast("Invalid credential");
+  //     setLoading(false);
+  //     console.error(
+  //       "Error while submitting form:",
+  //       error.response?.data || error.message
+  //     );
+  //   }
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // ✅ Start loading before the API call
 
     try {
       const response = await axios.post(
         "http://localhost:2100/api/login",
         user
       );
-
+      toast("Login Successful");
       console.log("User registered", response.data);
       setUser(response.data);
       localStorage.setItem("token", JSON.stringify(response.data.token));
       navigate("/dashboard");
     } catch (error) {
-      console.error(
-        "Error while submitting form:",
-        error.response?.data || error.message
-      );
+      toast("Invalid credential");
+      console.error("Error while submitting form:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -107,8 +133,13 @@ const Login = () => {
             className="w-full p-2 outline-none"
           />
         </div>
-        <button type="submit" className="w-full text-white p-2 rounded app-btn">
-          Login
+        <button
+          disabled={loading}
+          type="submit"
+          className="disabled:opacity-70 w-full disabled:cursor-default
+ text-white p-2 rounded app-btn"
+        >
+          {loading ? "Submiting..." : "Login"}
         </button>
       </form>
     </div>
