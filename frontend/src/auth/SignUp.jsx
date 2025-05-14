@@ -42,8 +42,8 @@ const SignUp = () => {
         user
       );
       console.log("User registered:", response.data);
-      setUser({ username: "", email: "", password: "" });
-      navigate("/register");
+      setUser(response.data);
+      // navigate("/register");
     } catch (error) {
       console.error(
         "Error while submitting form:",

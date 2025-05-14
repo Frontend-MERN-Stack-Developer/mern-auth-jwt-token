@@ -10,22 +10,28 @@ const Login = () => {
     email: "",
     password: "",
   };
+  // const token = JSON.parse(localStorage.setItem("token"));
+
   const [user, setUser] = useState(userData);
   const inputHandler = (e) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
+    console.log(name, value);
+    console.log(userData);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       const response = await axios.post(
         "http://localhost:2100/api/login",
         user
       );
-      console.log("User registered:", response.data);
-      setUser({ email: "", password: "" });
 
+      console.log("User registered", response.data);
+      setUser(response.data);
+      localStorage.setItem("token", JSON.stringify(response.data.token));
       navigate("/dashboard");
     } catch (error) {
       console.error(

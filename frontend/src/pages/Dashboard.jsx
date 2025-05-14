@@ -6,13 +6,13 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState("");
 
+  const token = JSON.parse(localStorage.getItem("token"));
+
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/login");
   };
-
-  const token = JSON.parse(localStorage.getItem("token"));
 
   const fetchData = () => {
     const header = {
